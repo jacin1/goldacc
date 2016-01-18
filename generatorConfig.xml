@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="mysql-connector-java-5.1.25.jar" />
+	<context id="context1">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/test" userId="root"
+			password="xsyi" />
+		<javaModelGenerator targetPackage="com.xsyi.model"
+			targetProject="E:\workspace\spring_wk\s3mDemo\src\main\java" />
+		<sqlMapGenerator targetPackage="com.xsyi.mapper"
+			targetProject="E:\workspace\spring_wk\s3mDemo\src\main\java" />
+		<javaClientGenerator targetPackage="com.xsyi.dao"
+			targetProject="E:\workspace\spring_wk\s3mDemo\src\main\java" type="XMLMAPPER" />
+		<table domainObjectName="user" tableName="user"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			selectByExampleQueryId="false" />
+		<table domainObjectName="role" tableName="role"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			selectByExampleQueryId="false" />
+	</context>
+</generatorConfiguration>

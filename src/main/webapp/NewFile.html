@@ -1,0 +1,48 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery/jquery-1.6.js"></script>
+<script
+ type="text/javascript">
+$(function(){
+//$('input[name="testradio"]:checked').val();
+//$('input:radio:checked').val();
+	$('#go').click(function(){
+		var radio = $('input[name="testradio"]').filter(':checked');
+		if(radio.length)
+		alert(radio.val());
+		else
+		alert('请选择一个radio');
+		
+		var i=0;
+		$('input[name="testradio"]').each(function(){
+			i++;
+			if(this.value == radio.val()){
+				alert(i);
+			}
+		});
+		
+	});
+	$('#go2').click(function(){
+		$('input[name="testradio"]').each(function(){
+			alert(this.value);
+		});
+	})
+	$('#go3').click(function(){
+		alert($('input[name="testradio"]:eq(1)').val());
+	})
+})
+</script>
+
+</head>
+
+<body>
+<input type="radio" name="testradio" value="jquery获取radio的值" 
+/>jquery获取radio的值<br /> <input type="radio" name="testradio"
+ value="jquery获取checkbox的值" />jquery获取checkbox的值<br /> 
+<input type="radio" name="testradio" value="jquery获取select的值" 
+/>jquery获取select的值<br />
+<button id="go">选中的那个radio的值</button>
+<button id="go2">遍历所有radio的值</button>
+<button id="go3">取第二个radio的值</button>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/*
+ * @(#)${tableName}.java 1.0 2011-6-1上午08:08:08
+ *
+ * Copyright (c) 2006-2011 ChinaPnR, Inc. All rights reserved.
+ */
+package com.chinapnr.draco.model.tty;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.chinapnr.draco.model.BaseObject;
+
+/**
+ * <dl>
+ *    <dt><b>Title:</b></dt>
+ *    <dd>
+ *    	none
+ *    </dd>
+ *    <dt><b>Description:</b></dt>
+ *    <dd>
+ *    	<p>none
+ *    </dd>
+ * </dl>
+ *
+ * @author draco
+ * @version 1.0, 2011-6-1
+ * @since draco-base
+ * 
+ */
+@Document(collection = "${mongoCollectionName}")
+public class $tableName extends BaseObject{
+
+	private static final long serialVersionUID = ${serialVersionUID}L;
+#foreach ($mapEntry in $fields)  
+#if (${mapEntry.columnEnum})
+	
+	public enum $stringUtils.capitalise($mapEntry.columnName){
+	#set($size=$mapEntry.columnEnum.size())
+	#foreach ($aEnum in $mapEntry.columnEnum.entrySet())
+#if($velocityCount == $size)
+	${aEnum.key}  //${aEnum.value}
+#else
+	${aEnum.key}, //${aEnum.value}  	  
+#end
+	#end}
+#end	
+#end 	
+
+#foreach ($mapEntry in $fields)  
+#if (${mapEntry.columnComment})
+	@Field(value="$mapEntry.orginColumnName")
+	private $mapEntry.columnType $mapEntry.columnName;	//${mapEntry.columnComment}
+	
+#else
+	@Field(value="$mapEntry.orginColumnName")
+	private $mapEntry.columnType $mapEntry.columnName;
+	
+#end
+#end 
+
+#foreach ($mapEntry in $fields)  
+	public $mapEntry.columnType get$stringUtils.capitalise($mapEntry.columnName)() {
+		return $mapEntry.columnName;
+	}
+	public void set$stringUtils.capitalise($mapEntry.columnName)($mapEntry.columnType $mapEntry.columnName) {
+		this.$mapEntry.columnName = $mapEntry.columnName;
+	}
+#end 
+
+}

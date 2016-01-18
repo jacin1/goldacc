@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="true">
+
+	<!-- ============================================================== -->
+	<!-- appender -->
+	<!-- ============================================================== -->
+	<appender name="draco_appender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="d:/s3mDemo/s3mDemo.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss} %5p [%c.%M(Line %L)] - %m%n" />
+		</layout>
+	</appender>
+	<appender name="sql_appender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="d:/s3mDemo/sql.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss} %5p [%c.%M(Line %L)] - %m%n" />
+		</layout>
+	</appender>
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss} %5p [%c.%M(Line %L)] - %m%n" />
+		</layout>
+	</appender>
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss} %5p [%c.%M(Line %L)] - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- ============================================================== -->
+	<!-- logger -->
+	<!-- ============================================================== -->
+
+	<logger name="org.apache.ibatis">
+		<level value="info" />
+		<appender-ref ref="sql_appender" />
+	</logger>
+	<logger name="org.mybatis">
+		<level value="info" />
+		<appender-ref ref="draco_appender" />
+	</logger>
+
+	<logger name="org.springframework">
+		<level value="info" />
+		<appender-ref ref="draco_appender" />
+	</logger>
+
+	<logger name="com.xsyi">
+		<level value="info" />
+	</logger>
+	
+	<logger name="com.ibatis" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<logger name="java.sql.Connection" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<logger name="java.sql.Statement" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<logger name="java.sql.PreparedStatement" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<logger name="java.sql.ResultSet" additivity="true">
+		<level value="info" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<!-- ============================================================== -->
+	<!-- root -->
+	<!-- ============================================================== -->
+	<root>
+		<level value="info" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</log4j:configuration>

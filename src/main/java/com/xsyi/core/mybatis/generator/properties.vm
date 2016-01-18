@@ -1,0 +1,3 @@
+#foreach ($aP in $properties.entrySet())
+${aP.key}=${aP.value}
+#end 	

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:jaxws="http://cxf.apache.org/jaxws"  
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+				http://cxf.apache.org/jaxws 
+    			http://cxf.apache.org/schemas/jaxws.xsd">
+		
+   <import resource="classpath:META-INF/cxf/cxf.xml"/>
+   <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+   
+   
+   <!-- 定义具体实现的bean, -->
+   <bean id="helloService" class="com.xsyi.webservice.impl.HelloWorldImpl"/>
+	
+   <!--通过CXF提供的jaxws-server标签,将定义的bean暴露出去成为web service服务 -->
+   <!-- service class=接口全路径 -->	
+   <jaxws:server id="helloWebService" serviceClass="com.xsyi.webservice.IHelloWorld"
+   			address="/helloworld">
+   		<!-- 要暴露的bean的引用,上面定义的bean的ID -->
+   		<jaxws:serviceBean>
+   			<ref bean="helloService"/>
+   		</jaxws:serviceBean>
+   </jaxws:server>
+   
+   
+</beans>
