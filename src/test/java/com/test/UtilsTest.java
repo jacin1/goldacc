@@ -1,6 +1,7 @@
 package com.test;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -91,5 +92,28 @@ public class UtilsTest extends TestCase {
     	
     	System.out.println(despwd);
     }
+
+    public void testRandList(){
+		int [] resultArr = shuffle(5);
+		for (int i = 0, j = resultArr.length; i < j; i ++) {
+			System.out.print(resultArr[i] + " ");
+		}
+	}
+
+	public static int[]shuffle(int length) {
+		if (length <= 0) {
+			return new int[0];
+		}
+		Random random = new Random();
+		int[] result = new int[length];
+		//i从0开始，下面的初始化可以去掉，但是这样节省一次遍历,可以在性能和可读性权衡
+		result[0] = 0;
+		for (int i = 1; i < length; i++) {
+			Integer randomIndex = random.nextInt(i + 1);
+			result[i] = result[randomIndex];
+			result[randomIndex] = i;
+		}
+		return result;
+	}
     
 }
